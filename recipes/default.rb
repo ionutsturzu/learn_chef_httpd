@@ -11,5 +11,5 @@ service 'httpd' do
 end
 
 template '/var/www/html/index.html' do
-  source 'intex.html.erb'
+  source 'index.html.erb'
 end

@@ -16,5 +16,20 @@ describe 'learn_chef_httpd::default' do
     it 'converges successfully' do
       expect { chef_run }.to_not raise_error
     end
+    
+    it 'installs httpd package' do
+      expect(chef_run).to install_package('httpd')
+    end
+    
+    it 'enables and starts htttpd package' do
+      expect(chef_run).to enable_service('httpd')
+      expect(chef_run).to start_service('httpd')
+    end
+
+    it 'creates index.html template' do
+      expect(chef_run).to create_template('/var/www/html/index.html').with(
+        source: 'index.html.erb'
+      )
+    end
   end
 end
